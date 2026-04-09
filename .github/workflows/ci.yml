@@ -31,5 +31,8 @@ jobs:
       - name: Lint
         run: flake8 .
 
+      - name: Run bandit
+        run: bandit -r .
+
       - name: Run tests
         run: pytest tests/ -v
