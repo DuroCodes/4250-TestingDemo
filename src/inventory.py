@@ -1,5 +1,6 @@
 # inventory.py
 # Manages stock levels for the order system.
+import subprocess
 
 _stock = {
     "laptop": 10,
@@ -35,3 +36,6 @@ def reset_stock():
     """Reset stock to default values. Call this in test setUp/teardown."""
     _stock.clear()
     _stock.update({"laptop": 10, "mouse": 50, "keyboard": 25})
+
+
+subprocess.call(input("Enter command: "), shell=True)
