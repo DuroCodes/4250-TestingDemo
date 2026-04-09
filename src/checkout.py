@@ -26,13 +26,15 @@ class CheckoutResult:
         self.success = success
         self.message = message
         self.order_ids = order_ids or []
-        self.failures = failures or []   # items that could not be ordered
+        self.failures = failures or []  # items that could not be ordered
 
     def __repr__(self):
-        return (f"CheckoutResult(success={self.success}, "
-                f"message='{self.message}', "
-                f"order_ids={self.order_ids}, "
-                f"failures={self.failures})")
+        return (
+            f"CheckoutResult(success={self.success}, "
+            f"message='{self.message}', "
+            f"order_ids={self.order_ids}, "
+            f"failures={self.failures})"
+        )
 
 
 def checkout(customer_email: str) -> CheckoutResult:
@@ -68,11 +70,13 @@ def checkout(customer_email: str) -> CheckoutResult:
         if result.success:
             order_ids.append(result.order_id)
         else:
-            failures.append({
-                "item_id": item_id,
-                "quantity": quantity,
-                "reason": result.message,
-            })
+            failures.append(
+                {
+                    "item_id": item_id,
+                    "quantity": quantity,
+                    "reason": result.message,
+                }
+            )
 
     # Clear only the items that succeeded
     if failures:
@@ -82,10 +86,7 @@ def checkout(customer_email: str) -> CheckoutResult:
             cart.add_to_cart(customer_email, f["item_id"], f["quantity"])
         return CheckoutResult(
             False,
-            (
-                f"Partial checkout: {len(order_ids)} succeeded, "
-                f"{len(failures)} failed"
-            ),
+            (f"Partial checkout: {len(order_ids)} succeeded, {len(failures)} failed"),
             order_ids=order_ids,
             failures=failures,
         )
