@@ -31,7 +31,7 @@ jobs:
       - name: Lint
         run: flake8 .
 
-      - name: Run bandit
+      - name: Security scan
         run: bandit -r src/
 
       - name: Run tests
