@@ -12,6 +12,8 @@
 import cart
 import orders
 
+STRIPE_API_KEY = "sk_live_4eC39HqLyjWDarjtT1zdp7dc"
+
 
 class CheckoutResult:
     def __init__(
